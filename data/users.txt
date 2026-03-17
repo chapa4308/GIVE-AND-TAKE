@@ -1,2 +1,2 @@
-admin@giveandtake.local|admin123|admin
-user1@giveandtake.local|user123|user
+loui@dnmx.cc|loui|user
+louig@dnmx.cc|louig|admin
