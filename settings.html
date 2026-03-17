@@ -72,7 +72,7 @@
             </table>
           </div>
 
-          <div class="card" style="padding:16px; max-width:860px; margin-top:14px">
+          <div class="card" id="usersBalanceBlock" style="padding:16px; max-width:860px; margin-top:14px">
             <div style="font-weight:1000;margin-bottom:10px">Балансы пользователей</div>
             <div class="muted" style="font-size:12px;margin-bottom:10px">
               Список берется из файла <code>site/data/users.txt</code>. Здесь можно задать отображаемый баланс для каждого аккаунта.
@@ -99,55 +99,62 @@
     </div>
 
     <script type="module">
-      import { applyContent, fetchUsers, getUserBalance, renderCurrentUserBalance, requireAuth, setUserBadge, setActiveNav, setUserBalance, wireLogout } from './assets/app.js';
+      import { applyContent, fetchUsers, getSession, getUserBalance, renderCurrentUserBalance, requireAuth, setUserBadge, setActiveNav, setUserBalance, wireLogout } from './assets/app.js';
       await applyContent();
-      requireAuth({ role: 'admin' });
+      requireAuth();
       setUserBadge();
       setActiveNav();
       wireLogout();
       renderCurrentUserBalance();
 
+      const session = getSession();
       const tbody = document.getElementById('usersBalanceBody');
       const msg = document.getElementById('usersBalanceMsg');
+      const adminBlock = document.getElementById('usersBalanceBlock');
 
-      function showSaved(text) {
-        msg.textContent = text;
-        msg.style.display = 'block';
-        setTimeout(() => {
-          msg.style.display = 'none';
-        }, 2000);
-      }
-
-      try {
-        const users = await fetchUsers();
-        if (!users.length) {
-          tbody.innerHTML = '<tr><td colspan="4" class="muted" style="text-align:center; padding:18px">Пользователи не найдены</td></tr>';
-        } else {
-          tbody.innerHTML = users
-            .map((u) => {
-              const bal = getUserBalance(u.email);
-              return `<tr>
-                <td>${u.email}</td>
-                <td>${u.role}</td>
-                <td><input class="input" data-balance-input="${u.email}" value="${bal.toFixed(2)}" /></td>
-                <td><button class="btn secondary" data-save-balance="${u.email}" style="padding:8px 10px;border-radius:10px;font-size:12px">Сохранить</button></td>
-              </tr>`;
-            })
-            .join('');
-
-          tbody.querySelectorAll('[data-save-balance]').forEach((btn) => {
-            btn.addEventListener('click', () => {
-              const email = btn.getAttribute('data-save-balance');
-              const input = tbody.querySelector(`[data-balance-input="${email}"]`);
-              const val = input?.value ?? '0';
-              setUserBalance(email, val);
-              renderCurrentUserBalance();
-              showSaved(`Баланс для ${email} сохранен`);
-            });
-          });
+      if (!session || session.role !== 'admin') {
+        // Обычный пользователь: показываем только информационные блоки, без таблицы балансов
+        adminBlock.style.display = 'none';
+      } else {
+        function showSaved(text) {
+          msg.textContent = text;
+          msg.style.display = 'block';
+          setTimeout(() => {
+            msg.style.display = 'none';
+          }, 2000);
         }
-      } catch (e) {
-        tbody.innerHTML = '<tr><td colspan="4" class="error" style="text-align:center; padding:18px">Ошибка загрузки users.txt</td></tr>';
+
+        try {
+          const users = await fetchUsers();
+          if (!users.length) {
+            tbody.innerHTML = '<tr><td colspan="4" class="muted" style="text-align:center; padding:18px">Пользователи не найдены</td></tr>';
+          } else {
+            tbody.innerHTML = users
+              .map((u) => {
+                const bal = getUserBalance(u.email);
+                return `<tr>
+                  <td>${u.email}</td>
+                  <td>${u.role}</td>
+                  <td><input class="input" data-balance-input="${u.email}" value="${bal.toFixed(2)}" /></td>
+                  <td><button class="btn secondary" data-save-balance="${u.email}" style="padding:8px 10px;border-radius:10px;font-size:12px">Сохранить</button></td>
+                </tr>`;
+              })
+              .join('');
+
+            tbody.querySelectorAll('[data-save-balance]').forEach((btn) => {
+              btn.addEventListener('click', () => {
+                const email = btn.getAttribute('data-save-balance');
+                const input = tbody.querySelector(`[data-balance-input="${email}"]`);
+                const val = input?.value ?? '0';
+                setUserBalance(email, val);
+                renderCurrentUserBalance();
+                showSaved(`Баланс для ${email} сохранен`);
+              });
+            });
+          }
+        } catch (e) {
+          tbody.innerHTML = '<tr><td colspan="4" class="error" style="text-align:center; padding:18px">Ошибка загрузки users.txt</td></tr>';
+        }
       }
     </script>
   </body>
