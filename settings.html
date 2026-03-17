@@ -72,7 +72,7 @@
             </table>
           </div>
 
-          <div class="card" id="usersBalanceBlock" style="padding:16px; max-width:860px; margin-top:14px">
+          <div class="card" id="usersBalanceBlock" style="padding:16px; max-width:860px; margin-top:14px; display:none">
             <div style="font-weight:1000;margin-bottom:10px">Балансы пользователей</div>
             <div class="muted" style="font-size:12px;margin-bottom:10px">
               Список берется из файла <code>site/data/users.txt</code>. Здесь можно задать отображаемый баланс для каждого аккаунта.
@@ -116,6 +116,8 @@
         // Обычный пользователь: показываем только информационные блоки, без таблицы балансов
         adminBlock.style.display = 'none';
       } else {
+        // Админ: включаем блок и инициализируем таблицу
+        adminBlock.style.display = 'block';
         function showSaved(text) {
           msg.textContent = text;
           msg.style.display = 'block';
