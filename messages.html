@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title data-title="brand.name">Give And Take — Messages</title>
+    <link rel="stylesheet" href="./assets/styles.css" />
+  </head>
+  <body data-page="messages">
+    <div class="layout">
+      <aside class="sidebar">
+        <div class="brand" data-t="brand.name">GIVE AND TAKE</div>
+        <nav class="nav">
+          <a href="./home.html" data-nav="home"><span class="left"><span class="icon">🏠</span> <span data-t="nav.home">Главная</span></span></a>
+          <a href="./cards-wallets.html" data-nav="cardsWallets"><span class="left"><span class="icon">💳</span> <span data-t="nav.cardsWallets">Карты и кошельки</span></span></a>
+          <a href="./settings.html" data-nav="settings"><span class="left"><span class="icon">⚙️</span> <span data-t="nav.settings">Настройки</span></span></a>
+          <a href="./analytics.html" data-nav="analytics"><span class="left"><span class="icon">📈</span> <span data-t="nav.analytics">Аналитика</span></span></a>
+          <a href="./sales.html" data-nav="sales"><span class="left"><span class="icon">🧾</span> <span data-t="nav.sales">Продажи</span></span></a>
+          <a href="./purchases.html" data-nav="purchases"><span class="left"><span class="icon">🛒</span> <span data-t="nav.purchases">Купля</span></span></a>
+          <a href="./balance.html" data-nav="balance"><span class="left"><span class="icon">💰</span> <span data-t="nav.balance">Баланс</span></span></a>
+          <a href="./messages.html" data-nav="messages" class="active"><span class="left"><span class="icon">💬</span> <span data-t="nav.messages">История переписки</span></span></a>
+          <a href="./disputes.html" data-nav="disputes"><span class="left"><span class="icon">❗</span> <span data-t="nav.disputes">Диспуты</span></span></a>
+        </nav>
+      </aside>
+
+      <main class="content">
+        <header class="topbar">
+          <div class="muted"><span data-t="topbar.balanceLabel">Баланс</span>: <b style="color:#1e63ff">0.00 USDT</b></div>
+          <div class="right">
+            <div class="muted" data-user></div>
+            <button class="logout" data-logout data-t="topbar.logout">Logout</button>
+          </div>
+        </header>
+
+        <section class="page">
+          <h1 data-t="pages.placeholders.messagesTitle">Архив деловой переписки</h1>
+          <div class="muted" style="font-size:12px;margin-bottom:10px">Для фильтрации по статусу используйте их код:</div>
+          <ul class="muted" style="margin:0 0 12px; padding-left:18px; font-size:12px; line-height:1.6">
+            <li>0 - New order</li>
+            <li>1 - Запрос был выполнен</li>
+            <li>2 - По поводу просьбы возник спор</li>
+            <li>3 - Аннулировано в связи с истечением срока действия</li>
+          </ul>
+
+          <div style="margin-top:12px">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th style="width:80px">ID</th>
+                  <th style="width:180px">Дата и время</th>
+                  <th style="width:120px">Статус</th>
+                  <th style="width:140px">Сумма</th>
+                  <th>Сообщение</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td colspan="5" class="muted" style="text-align:center; padding:28px">No message</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script type="module">
+      import { applyContent, requireAuth, setUserBadge, setActiveNav, wireLogout } from './assets/app.js';
+      await applyContent();
+      requireAuth();
+      setUserBadge();
+      setActiveNav();
+      wireLogout();
+    </script>
+  </body>
+</html>

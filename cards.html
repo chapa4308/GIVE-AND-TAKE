@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title data-title="brand.name">Give And Take — Карты и кошельки</title>
+    <link rel="stylesheet" href="./assets/styles.css" />
+  </head>
+  <body data-page="legacyCards">
+    <div class="layout">
+      <aside class="sidebar">
+        <div class="brand" data-t="brand.name">GIVE AND TAKE</div>
+        <nav class="nav">
+          <a href="./home.html" data-nav="home"><span class="left"><span class="icon">🏠</span> <span data-t="nav.home">Главная</span></span></a>
+          <a href="./cards-wallets.html" data-nav="cardsWallets"><span class="left"><span class="icon">💳</span> <span data-t="nav.cardsWallets">Карты и кошельки</span></span></a>
+          <a href="./settings.html" data-nav="settings"><span class="left"><span class="icon">⚙️</span> <span data-t="nav.settings">Настройки</span></span></a>
+          <a href="./analytics.html" data-nav="analytics"><span class="left"><span class="icon">📈</span> <span data-t="nav.analytics">Аналитика</span></span></a>
+          <a href="./sales.html" data-nav="sales"><span class="left"><span class="icon">🧾</span> <span data-t="nav.sales">Продажи</span></span></a>
+          <a href="./purchases.html" data-nav="purchases"><span class="left"><span class="icon">🛒</span> <span data-t="nav.purchases">Купля</span></span></a>
+          <a href="./balance.html" data-nav="balance"><span class="left"><span class="icon">💰</span> <span data-t="nav.balance">Баланс</span></span></a>
+          <a href="./messages.html" data-nav="messages"><span class="left"><span class="icon">💬</span> <span data-t="nav.messages">История переписки</span></span></a>
+          <a href="./disputes.html" data-nav="disputes"><span class="left"><span class="icon">❗</span> <span data-t="nav.disputes">Диспуты</span></span></a>
+        </nav>
+      </aside>
+
+      <main class="content">
+        <header class="topbar">
+          <div class="muted">Баланс: <b style="color:#1e63ff">0.00 USDT</b></div>
+          <div class="right">
+            <div class="muted" data-user></div>
+            <button class="logout" data-logout data-t="topbar.logout">Logout</button>
+          </div>
+        </header>
+
+        <section class="page">
+          <h1 data-t="pages.cardsSimple.title">Карты и кошельки</h1>
+          <div class="card" style="padding:16px; max-width:520px">
+            <div style="font-weight:900; margin-bottom:10px" data-t="pages.cardsSimple.calcDate">Дата расчета</div>
+            <input class="input" data-ph="pages.cardsSimple.datePlaceholder" placeholder="dd.mm.yyyy" />
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script type="module">
+      import { applyContent, requireAuth, setUserBadge, setActiveNav, wireLogout } from './assets/app.js';
+      await applyContent();
+      requireAuth();
+      setUserBadge();
+      setActiveNav();
+      wireLogout();
+    </script>
+  </body>
+</html>

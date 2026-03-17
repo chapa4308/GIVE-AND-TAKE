@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title data-title="brand.name">Give And Take — Кабинет</title>
+    <link rel="stylesheet" href="./assets/styles.css" />
+  </head>
+  <body data-page="cards">
+    <div class="layout">
+      <aside class="sidebar">
+        <div class="brand" data-t="brand.name">GIVE AND TAKE</div>
+        <div class="muted" style="margin: 0 10px 10px; font-size: 12px" data-t="brand.tagline">Secure payment system</div>
+
+        <nav class="nav">
+          <a href="./app.html" data-nav="cards" class="active">
+            <span class="left"><span class="icon">🏠</span> <span data-t="nav.home">Главная</span></span>
+          </a>
+          <a href="./cards.html" data-nav="cards2">
+            <span class="left"><span class="icon">💳</span> <span data-t="nav.cardsWallets">Карты и кошельки</span></span>
+          </a>
+          <a href="./settings.html" data-nav="settings">
+            <span class="left"><span class="icon">⚙️</span> <span data-t="nav.settings">Настройки</span></span>
+          </a>
+          <a href="./analytics.html" data-nav="analytics">
+            <span class="left"><span class="icon">📈</span> <span data-t="nav.analytics">Аналитика</span></span>
+          </a>
+          <a href="./sales.html" data-nav="sales">
+            <span class="left"><span class="icon">🧾</span> <span data-t="nav.sales">Продажи</span></span>
+          </a>
+          <a href="./purchases.html" data-nav="purchases">
+            <span class="left"><span class="icon">🛒</span> <span data-t="nav.purchases">Купля</span></span>
+          </a>
+          <a href="./balance.html" data-nav="balance">
+            <span class="left"><span class="icon">💰</span> <span data-t="nav.balance">Баланс</span></span>
+          </a>
+          <a href="./messages.html" data-nav="messages">
+            <span class="left"><span class="icon">💬</span> <span data-t="nav.messages">История переписки</span></span>
+          </a>
+          <a href="./disputes.html" data-nav="disputes">
+            <span class="left"><span class="icon">❗</span> <span data-t="nav.disputes">Диспуты</span></span>
+          </a>
+        </nav>
+      </aside>
+
+      <main class="content">
+        <header class="topbar">
+          <div class="muted"><span data-t="topbar.balanceLabel">Баланс</span>: <b style="color:#1e63ff">0.00 USDT</b></div>
+          <div class="right">
+            <div class="muted" data-user></div>
+            <button class="logout" data-logout data-t="topbar.logout">Logout</button>
+          </div>
+        </header>
+
+        <section class="page">
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap">
+            <h1 style="margin:0" data-t="pages.cards.title">Карты и кошельки</h1>
+            <button class="btn" id="addCardBtn" data-t="pages.cards.addNewCard">+ ДОБАВИТЬ НОВУЮ КАРТУ</button>
+          </div>
+
+          <div class="stats" style="margin-top: 16px">
+            <div class="stat">
+              <div class="k" data-t="pages.cards.statTotalCards">Всего карт</div>
+              <div class="v">0</div>
+            </div>
+            <div class="stat">
+              <div class="k" data-t="pages.cards.statActiveCards">Активных карт</div>
+              <div class="v">0</div>
+            </div>
+          </div>
+
+          <div style="margin-top: 18px">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Статус</th>
+                  <th>Банк</th>
+                  <th>Имя</th>
+                  <th>Номер карты</th>
+                  <th>Телефон</th>
+                  <th>Пробег</th>
+                  <th>Действие</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td colspan="8" class="muted" style="text-align:center; padding:18px" data-t="pages.cards.noInfo">Нет информации</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div class="modal-backdrop" id="addCardModal">
+      <div class="modal">
+        <header data-t="pages.cards.modalTitle">Реквизиты для оплаты</header>
+        <div class="body">
+          <div class="form-grid">
+            <input class="input full" placeholder="Имя в системе" />
+            <input class="input full" placeholder="Имя владельца" />
+            <select class="input">
+              <option>Выберите банк</option>
+              <option>Monobank</option>
+              <option>PrivatBank</option>
+              <option>Другой</option>
+            </select>
+            <input class="input" placeholder="Срок" />
+            <input class="input full" placeholder="Номер карты" />
+            <label class="muted full" style="display:flex; gap:10px; align-items:center; font-size:12px">
+              <input type="checkbox" />
+              Оплата принимается на реквизиты счета
+            </label>
+            <input class="input full" placeholder="IBAN" />
+            <input class="input full" placeholder="ІПН/ЄДРПОУ" />
+            <input class="input full" placeholder="Номер телефона" />
+            <input class="input full" placeholder="Номер телефона в числовом формате" />
+            <input class="input full" placeholder="Валюта" />
+            <div class="form-grid full" style="grid-template-columns:1fr 1fr 1fr; gap:10px">
+              <input class="input" placeholder="Лимит в день" />
+              <input class="input" placeholder="MIN ордер" />
+              <input class="input" placeholder="MAX ордер" />
+            </div>
+            <input class="input full" placeholder="MAX кол-во платежей" />
+          </div>
+        </div>
+        <div class="actions">
+          <button class="btn" data-close data-t="pages.cards.save">СОХРАНИТЬ</button>
+          <button class="btn danger" data-close data-t="pages.cards.cancel">ОТМЕНА</button>
+        </div>
+      </div>
+    </div>
+
+    <script type="module">
+      import { applyContent, requireAuth, setUserBadge, setActiveNav, wireLogout, onClick, openModal, wireModalClose } from './assets/app.js';
+      await applyContent();
+      requireAuth();
+      setUserBadge();
+      setActiveNav();
+      wireLogout();
+      wireModalClose('addCardModal');
+      onClick('#addCardBtn', () => openModal('addCardModal'));
+    </script>
+  </body>
+</html>

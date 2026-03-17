@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title data-title="brand.name">Give And Take — Balance</title>
+    <link rel="stylesheet" href="./assets/styles.css" />
+  </head>
+  <body data-page="balance">
+    <div class="layout">
+      <aside class="sidebar">
+        <div class="brand" data-t="brand.name">GIVE AND TAKE</div>
+        <nav class="nav">
+          <a href="./home.html" data-nav="home"><span class="left"><span class="icon">🏠</span> <span data-t="nav.home">Главная</span></span></a>
+          <a href="./cards-wallets.html" data-nav="cardsWallets"><span class="left"><span class="icon">💳</span> <span data-t="nav.cardsWallets">Карты и кошельки</span></span></a>
+          <a href="./settings.html" data-nav="settings"><span class="left"><span class="icon">⚙️</span> <span data-t="nav.settings">Настройки</span></span></a>
+          <a href="./analytics.html" data-nav="analytics"><span class="left"><span class="icon">📈</span> <span data-t="nav.analytics">Аналитика</span></span></a>
+          <a href="./sales.html" data-nav="sales"><span class="left"><span class="icon">🧾</span> <span data-t="nav.sales">Продажи</span></span></a>
+          <a href="./purchases.html" data-nav="purchases"><span class="left"><span class="icon">🛒</span> <span data-t="nav.purchases">Купля</span></span></a>
+          <a href="./balance.html" data-nav="balance" class="active"><span class="left"><span class="icon">💰</span> <span data-t="nav.balance">Баланс</span></span></a>
+          <a href="./messages.html" data-nav="messages"><span class="left"><span class="icon">💬</span> <span data-t="nav.messages">История переписки</span></span></a>
+          <a href="./disputes.html" data-nav="disputes"><span class="left"><span class="icon">❗</span> <span data-t="nav.disputes">Диспуты</span></span></a>
+        </nav>
+      </aside>
+
+      <main class="content">
+        <header class="topbar">
+          <div class="muted"><span data-t="topbar.balanceLabel">Баланс</span>: <b style="color:#1e63ff" data-balance-usdt>0.00 USDT</b></div>
+          <div class="right">
+            <div class="muted" data-user></div>
+            <button class="logout" data-logout data-t="topbar.logout">Logout</button>
+          </div>
+        </header>
+
+        <section class="page">
+          <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;max-width:980px">
+            <div class="card" style="padding:16px">
+              <div class="muted" style="font-weight:900;font-size:12px">Текущий баланс</div>
+              <div style="font-weight:1000;font-size:22px;margin-top:10px;color:var(--primary)" data-balance-usdt>0.00 USDT</div>
+              <div class="muted" style="font-size:12px;margin-top:6px">Доступно для операций</div>
+            </div>
+            <div class="card" style="padding:16px">
+              <div class="muted" style="font-weight:900;font-size:12px">Блокировка при</div>
+              <div style="font-weight:1000;font-size:22px;margin-top:10px;color:#f59e0b">1.00 <span class="muted" style="font-size:12px">USDT</span></div>
+              <div class="muted" style="font-size:12px;margin-top:6px">Минимальный остаток</div>
+            </div>
+            <div class="card" style="padding:16px">
+              <div class="muted" style="font-weight:900;font-size:12px">Всего заявок</div>
+              <div style="font-weight:1000;font-size:22px;margin-top:10px;color:var(--primary)">0</div>
+              <div class="muted" style="font-size:12px;margin-top:6px">История пополнений</div>
+            </div>
+          </div>
+
+          <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;max-width:1040px;margin-top:14px">
+            <div class="card" style="padding:16px">
+              <div style="font-weight:1000;margin-bottom:10px">Кошелек для пополнения (USDT)</div>
+              <div style="display:flex;gap:10px;align-items:center">
+                <input class="input" id="topupWallet" value="TZ3cAUwnuwfttURj6D3jr9RHYSaSW3yAfg" readonly />
+                <button class="btn secondary" id="copyWalletBtn" type="button" style="padding:10px 12px">Копировать</button>
+              </div>
+              <div style="margin-top:10px">
+                <span class="pill">Сеть TRC 20</span>
+              </div>
+
+              <div class="card" style="padding:12px; margin-top:12px; background:#f5f9ff; border-color:#dbeafe">
+                <div style="font-weight:1000;margin-bottom:8px">Инструкция по пополнению:</div>
+                <ol class="muted" style="margin:0; padding-left:18px; font-size:12px; line-height:1.55" data-html="pages.balance.instructionHtml">
+                  <li>Переведите USDT на указанный кошелек через сеть TRC 20</li>
+                  <li>Нажмите кнопку "Создать запрос на пополнение" ниже</li>
+                  <li>Укажите сумму депозита в USDT</li>
+                  <li>Дождитесь подтверждения от администратора</li>
+                  <li>После подтверждения сумма будет зачислена на ваш баланс</li>
+                </ol>
+              </div>
+            </div>
+
+            <div class="card" style="padding:16px">
+              <div style="font-weight:1000;margin-bottom:10px">Карта для пополнения в гривне (UAH)</div>
+              <div style="display:flex;flex-direction:column;gap:8px">
+                <input class="input" id="uahCardNumber" value="5375 41XX XXXX 1234" readonly />
+                <input class="input" id="uahIban" value="UA12 3456 7890 1234 5678 9012 3456" readonly />
+              </div>
+              <div class="card" style="padding:12px; margin-top:12px; background:#fefce8; border-color:#facc15">
+                <div style="font-weight:1000;margin-bottom:8px">Инструкция по UAH-пополнению:</div>
+                <ol class="muted" style="margin:0; padding-left:18px; font-size:12px; line-height:1.55">
+                  <li>Пополните указанную карту в гривне удобным для вас способом (терминал, онлайн-банкинг и т.д.)</li>
+                  <li>Сохраните подтверждение платежа (чек или скрин)</li>
+                  <li>Создайте запрос на пополнение и укажите сумму в UAH и комментарий</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+
+          <!-- список заявок на пополнение снизу убран по ТЗ -->
+        </section>
+      </main>
+    </div>
+
+    <div class="modal-backdrop" id="topupModal">
+      <div class="modal" style="width:min(520px,100%)">
+        <header>Создать запрос на пополнение</header>
+        <div class="body">
+          <div class="form-grid" style="grid-template-columns:1fr 1fr">
+            <input class="input full" id="topupAmount" placeholder="Сумма (USDT)" />
+            <input class="input full" id="topupTx" placeholder="TXID (необязательно)" />
+            <input class="input full" id="topupWalletField" placeholder="Кошелек" />
+            <select class="input full" id="topupCurrency">
+              <option>USDT</option>
+              <option>UAH</option>
+            </select>
+          </div>
+          <div id="topupMsg" class="error" style="display:none"></div>
+        </div>
+        <div class="actions">
+          <button class="btn" id="saveTopupBtn" type="button">Создать</button>
+          <button class="btn danger" data-close type="button">Отмена</button>
+        </div>
+      </div>
+    </div>
+
+    <script type="module">
+      import { addTopup, applyContent, closeModal, openModal, renderTopups, requireAuth, setUserBadge, setActiveNav, wireLogout, wireModalClose, renderCurrentUserBalance } from './assets/app.js';
+      await applyContent();
+      requireAuth();
+      setUserBadge();
+      setActiveNav();
+      wireLogout();
+      wireModalClose('topupModal');
+
+      renderTopups();
+      renderCurrentUserBalance();
+
+      const walletEl = document.getElementById('topupWallet');
+      document.getElementById('copyWalletBtn').addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(walletEl.value);
+        } catch {}
+      });
+
+      const openBtn = document.getElementById('openTopupBtn');
+      if (openBtn) {
+        openBtn.addEventListener('click', () => {
+          document.getElementById('topupWalletField').value = walletEl.value;
+          openModal('topupModal');
+        });
+      }
+
+      const msg = document.getElementById('topupMsg');
+      function showErr(t) {
+        msg.textContent = t;
+        msg.style.display = 'block';
+      }
+
+      document.getElementById('saveTopupBtn').addEventListener('click', () => {
+        msg.style.display = 'none';
+        const amount = document.getElementById('topupAmount').value.trim();
+        const wallet = document.getElementById('topupWalletField').value.trim();
+        const currency = document.getElementById('topupCurrency').value;
+        if (!amount) return showErr('Введите сумму');
+        if (!wallet) return showErr('Введите кошелек');
+        addTopup({ amount, wallet, currency, fee: '0', status: 'New order' });
+        closeModal('topupModal');
+        renderTopups();
+      });
+    </script>
+  </body>
+</html>

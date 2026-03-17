@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title data-title="brand.name">Give And Take — Login</title>
+    <link rel="stylesheet" href="./assets/styles.css" />
+  </head>
+  <body>
+    <div class="login-shell">
+      <section class="login-left">
+        <div>
+          <div class="logo" data-t="brand.name">GIVE AND TAKE</div>
+          <div class="tag" data-t="brand.tagline">SECURE PAYMENT SYSTEM</div>
+        </div>
+      </section>
+
+      <section class="login-right">
+        <div class="card login-card">
+          <h2 data-t="login.title">LOGIN</h2>
+          <div class="sub" data-t="login.welcome">Добро пожаловать</div>
+
+          <form id="loginForm" class="stack" autocomplete="on">
+            <input class="input" name="email" type="email" data-ph="login.emailPlaceholder" placeholder="Email Address" required />
+            <input class="input" name="password" type="password" data-ph="login.passwordPlaceholder" placeholder="Password" required />
+            <button class="btn" type="submit" style="width: 100%" data-t="login.signIn">SIGN IN</button>
+            <div id="msg" class="error" style="display:none"></div>
+          </form>
+
+          <div class="muted" style="margin-top: 14px; font-size: 12px; line-height: 1.4">
+            <span data-t="login.hint">Данные для входа берутся из site/data/users.txt.</span>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <script type="module">
+      import { applyContent, getSession, loginWithTxt } from './assets/app.js';
+
+      await applyContent();
+
+      const existing = getSession();
+      if (existing) window.location.href = './home.html';
+
+      const form = document.getElementById('loginForm');
+      const msg = document.getElementById('msg');
+
+      function showError(text) {
+        msg.textContent = text;
+        msg.style.display = 'block';
+      }
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        msg.style.display = 'none';
+        const fd = new FormData(form);
+        const email = String(fd.get('email') || '').trim();
+        const password = String(fd.get('password') || '');
+
+        try {
+          const res = await loginWithTxt(email, password);
+          if (!res.ok) return showError(res.message);
+          window.location.href = './home.html';
+        } catch (err) {
+          showError(err?.message || 'Ошибка входа');
+        }
+      });
+    </script>
+  </body>
+</html>

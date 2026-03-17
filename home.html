@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title data-title="brand.name">Give And Take — Главная</title>
+    <link rel="stylesheet" href="./assets/styles.css" />
+  </head>
+  <body data-page="home">
+    <div class="layout">
+      <aside class="sidebar">
+        <div class="brand" data-t="brand.name">GIVE AND TAKE</div>
+        <nav class="nav">
+          <a href="./home.html" data-nav="home" class="active"><span class="left"><span class="icon">🏠</span> <span data-t="nav.home">Главная</span></span></a>
+          <a href="./cards-wallets.html" data-nav="cardsWallets"><span class="left"><span class="icon">💳</span> <span data-t="nav.cardsWallets">Карты и кошельки</span></span></a>
+          <a href="./settings.html" data-nav="settings"><span class="left"><span class="icon">⚙️</span> <span data-t="nav.settings">Настройки</span></span></a>
+          <a href="./analytics.html" data-nav="analytics"><span class="left"><span class="icon">📈</span> <span data-t="nav.analytics">Аналитика</span></span></a>
+          <a href="./sales.html" data-nav="sales"><span class="left"><span class="icon">🧾</span> <span data-t="nav.sales">Продажи</span></span></a>
+          <a href="./purchases.html" data-nav="purchases"><span class="left"><span class="icon">🛒</span> <span data-t="nav.purchases">Купля</span></span></a>
+          <a href="./balance.html" data-nav="balance"><span class="left"><span class="icon">💰</span> <span data-t="nav.balance">Баланс</span></span></a>
+          <a href="./messages.html" data-nav="messages"><span class="left"><span class="icon">💬</span> <span data-t="nav.messages">История переписки</span></span></a>
+          <a href="./disputes.html" data-nav="disputes"><span class="left"><span class="icon">❗</span> <span data-t="nav.disputes">Диспуты</span></span></a>
+        </nav>
+      </aside>
+
+      <main class="content">
+        <header class="topbar">
+          <div class="muted"><span data-t="topbar.balanceLabel">Баланс</span>: <b style="color:#1e63ff" data-balance-usdt>0.00 USDT</b></div>
+          <div class="right">
+            <div class="muted" data-user></div>
+            <button class="logout" data-logout data-t="topbar.logout">Logout</button>
+          </div>
+        </header>
+
+        <section class="page">
+          <div class="card" style="padding:16px">
+            <div class="muted" data-html="pages.home.formulaHtml">
+              Баланс рассчитывается по формуле:
+              <b>(pay_in + comission_in) - (pay_out + comission_out) - withdrawal</b>
+            </div>
+          </div>
+
+          <div style="display:grid;grid-template-columns:360px 1fr;gap:16px;margin-top:16px">
+            <div class="card" style="overflow:hidden">
+              <div style="padding:14px 14px;border-bottom:1px solid var(--border);font-weight:900" data-t="pages.home.currentBalanceTitle">
+                Текущий баланс
+              </div>
+              <div style="padding:14px 14px;text-align:center">
+                <div style="font-weight:1000;font-size:28px;color:var(--primary)" data-balance-usdt>0.00 USDT</div>
+              </div>
+              <div style="padding:12px 14px;border-top:1px solid var(--border);background:#f8fafc">
+                <div class="muted" style="font-size:12px" data-t="pages.home.todayProfitTitle">Прибыль за сегодня</div>
+                <div style="font-weight:1000;font-size:22px;color:var(--primary);margin-top:6px">0.00 UAH</div>
+                <div class="muted" style="font-size:12px;margin-top:6px">PayIn: 0.00 • UAH/PayOut: 0.00</div>
+              </div>
+              <div style="padding:12px 14px;border-top:1px solid var(--border);background:#f8fafc">
+                <div class="muted" style="font-size:12px" data-t="pages.home.monthProfitTitle">Прибыль за 30 дней</div>
+                <div style="font-weight:1000;font-size:22px;color:var(--primary);margin-top:6px">0.00 UAH</div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div style="padding:14px 14px;border-bottom:1px solid var(--border);font-weight:900;text-align:center" data-t="pages.home.chartTitle">
+                Статистика прибыли за 30 дней
+              </div>
+              <div style="padding:14px">
+                <div style="height:280px;border:1px dashed #cbd5e1;border-radius:14px;background:#fbfdff;display:grid;place-items:center" class="muted">
+                  Chart placeholder
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script type="module">
+      import { applyContent, requireAuth, setUserBadge, setActiveNav, wireLogout, renderCurrentUserBalance } from './assets/app.js';
+      await applyContent();
+      requireAuth();
+      setUserBadge();
+      setActiveNav();
+      wireLogout();
+      renderCurrentUserBalance();
+    </script>
+  </body>
+</html>

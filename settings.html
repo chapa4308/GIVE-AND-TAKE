@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title data-title="brand.name">Give And Take — Settings</title>
+    <link rel="stylesheet" href="./assets/styles.css" />
+  </head>
+  <body data-page="settings">
+    <div class="layout">
+      <aside class="sidebar">
+        <div class="brand" data-t="brand.name">GIVE AND TAKE</div>
+        <nav class="nav">
+          <a href="./home.html" data-nav="home"><span class="left"><span class="icon">🏠</span> <span data-t="nav.home">Главная</span></span></a>
+          <a href="./cards-wallets.html" data-nav="cardsWallets"><span class="left"><span class="icon">💳</span> <span data-t="nav.cardsWallets">Карты и кошельки</span></span></a>
+          <a href="./settings.html" data-nav="settings" class="active"><span class="left"><span class="icon">⚙️</span> <span data-t="nav.settings">Настройки</span></span></a>
+          <a href="./analytics.html" data-nav="analytics"><span class="left"><span class="icon">📈</span> <span data-t="nav.analytics">Аналитика</span></span></a>
+          <a href="./sales.html" data-nav="sales"><span class="left"><span class="icon">🧾</span> <span data-t="nav.sales">Продажи</span></span></a>
+          <a href="./purchases.html" data-nav="purchases"><span class="left"><span class="icon">🛒</span> <span data-t="nav.purchases">Купля</span></span></a>
+          <a href="./balance.html" data-nav="balance"><span class="left"><span class="icon">💰</span> <span data-t="nav.balance">Баланс</span></span></a>
+          <a href="./messages.html" data-nav="messages"><span class="left"><span class="icon">💬</span> <span data-t="nav.messages">История переписки</span></span></a>
+          <a href="./disputes.html" data-nav="disputes"><span class="left"><span class="icon">❗</span> <span data-t="nav.disputes">Диспуты</span></span></a>
+        </nav>
+      </aside>
+
+      <main class="content">
+        <header class="topbar">
+          <div class="muted"><span data-t="topbar.balanceLabel">Баланс</span>: <b style="color:#1e63ff" data-balance-usdt>0.00 USDT</b></div>
+          <div class="right">
+            <div class="muted" data-user></div>
+            <button class="logout" data-logout data-t="topbar.logout">Logout</button>
+          </div>
+        </header>
+
+        <section class="page">
+          <h1 data-t="pages.placeholders.settingsTitle">Настройки трейдера</h1>
+          <div class="card" style="padding:16px; max-width:860px; background:linear-gradient(90deg,#6d5bd0,#5c8df7); color:#fff; border:none">
+            <div style="font-weight:900">Настройки валют и комиссий</div>
+            <div style="opacity:.9; margin-top:6px; font-size:12px">
+              Здесь отображаются базовые настройки вашего профиля трейдера. Комиссии применяются автоматически ко всем транзакциям.
+            </div>
+          </div>
+
+          <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;max-width:860px;margin-top:14px">
+            <div class="card" style="padding:16px">
+              <div class="muted" style="font-weight:900;font-size:12px">Базовая валюта для входящих платежей</div>
+              <div style="font-weight:1000;font-size:22px;margin-top:10px">UAH <span class="pill">Гривны</span></div>
+            </div>
+            <div class="card" style="padding:16px">
+              <div class="muted" style="font-weight:900;font-size:12px">Базовая валюта для исходящих платежей</div>
+              <div style="font-weight:1000;font-size:22px;margin-top:10px">UAH <span class="pill">Гривны</span></div>
+            </div>
+            <div class="card" style="padding:16px">
+              <div class="muted" style="font-weight:900;font-size:12px">Комиссия за входящий платеж</div>
+              <div style="font-weight:1000;font-size:22px;margin-top:10px;color:#16a34a">5%</div>
+            </div>
+            <div class="card" style="padding:16px">
+              <div class="muted" style="font-weight:900;font-size:12px">Комиссия за исходящий платеж</div>
+              <div style="font-weight:1000;font-size:22px;margin-top:10px;color:#16a34a">1.5%</div>
+            </div>
+          </div>
+
+          <div class="card" style="padding:16px; max-width:860px; margin-top:14px">
+            <div style="font-weight:1000;margin-bottom:10px">Информация о комиссиях</div>
+            <table class="table">
+              <tbody>
+                <tr><th style="width:55%">Входящие платежи (PayIn)</th><td>5% от суммы</td></tr>
+                <tr><th>Исходящие платежи (PayOut)</th><td>1.5% от суммы</td></tr>
+                <tr><th>Минимальная транзакция</th><td>300 UAH</td></tr>
+                <tr><th>Максимальная транзакция</th><td>29 999 UAH</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="card" style="padding:16px; max-width:860px; margin-top:14px">
+            <div style="font-weight:1000;margin-bottom:10px">Балансы пользователей</div>
+            <div class="muted" style="font-size:12px;margin-bottom:10px">
+              Список берется из файла <code>site/data/users.txt</code>. Здесь можно задать отображаемый баланс для каждого аккаунта.
+            </div>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Email</th>
+                  <th>Роль</th>
+                  <th>Баланс, USDT</th>
+                  <th style="width:140px">Действие</th>
+                </tr>
+              </thead>
+              <tbody id="usersBalanceBody">
+                <tr>
+                  <td colspan="4" class="muted" style="text-align:center; padding:18px">Загрузка пользователей...</td>
+                </tr>
+              </tbody>
+            </table>
+            <div id="usersBalanceMsg" class="success" style="display:none"></div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script type="module">
+      import { applyContent, fetchUsers, getUserBalance, renderCurrentUserBalance, requireAuth, setUserBadge, setActiveNav, setUserBalance, wireLogout } from './assets/app.js';
+      await applyContent();
+      requireAuth({ role: 'admin' });
+      setUserBadge();
+      setActiveNav();
+      wireLogout();
+      renderCurrentUserBalance();
+
+      const tbody = document.getElementById('usersBalanceBody');
+      const msg = document.getElementById('usersBalanceMsg');
+
+      function showSaved(text) {
+        msg.textContent = text;
+        msg.style.display = 'block';
+        setTimeout(() => {
+          msg.style.display = 'none';
+        }, 2000);
+      }
+
+      try {
+        const users = await fetchUsers();
+        if (!users.length) {
+          tbody.innerHTML = '<tr><td colspan="4" class="muted" style="text-align:center; padding:18px">Пользователи не найдены</td></tr>';
+        } else {
+          tbody.innerHTML = users
+            .map((u) => {
+              const bal = getUserBalance(u.email);
+              return `<tr>
+                <td>${u.email}</td>
+                <td>${u.role}</td>
+                <td><input class="input" data-balance-input="${u.email}" value="${bal.toFixed(2)}" /></td>
+                <td><button class="btn secondary" data-save-balance="${u.email}" style="padding:8px 10px;border-radius:10px;font-size:12px">Сохранить</button></td>
+              </tr>`;
+            })
+            .join('');
+
+          tbody.querySelectorAll('[data-save-balance]').forEach((btn) => {
+            btn.addEventListener('click', () => {
+              const email = btn.getAttribute('data-save-balance');
+              const input = tbody.querySelector(`[data-balance-input="${email}"]`);
+              const val = input?.value ?? '0';
+              setUserBalance(email, val);
+              renderCurrentUserBalance();
+              showSaved(`Баланс для ${email} сохранен`);
+            });
+          });
+        }
+      } catch (e) {
+        tbody.innerHTML = '<tr><td colspan="4" class="error" style="text-align:center; padding:18px">Ошибка загрузки users.txt</td></tr>';
+      }
+    </script>
+  </body>
+</html>
