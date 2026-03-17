@@ -1,0 +1,76 @@
+{
+  "brand": {
+    "name": "GIVE AND TAKE",
+    "tagline": "SECURE PAYMENT SYSTEM"
+  },
+  "login": {
+    "title": "LOGIN",
+    "welcome": "Добро пожаловать",
+    "emailPlaceholder": "Email Address",
+    "passwordPlaceholder": "Password",
+    "signIn": "SIGN IN",
+    "hint": "Данные для входа берутся из site/data/users.txt."
+  },
+  "topbar": {
+    "balanceLabel": "Баланс",
+    "logout": "Logout"
+  },
+  "nav": {
+    "home": "Главная",
+    "cardsWallets": "Карты и кошельки",
+    "settings": "Настройки",
+    "analytics": "Аналитика",
+    "sales": "Продажи",
+    "purchases": "Купля",
+    "balance": "Баланс",
+    "messages": "История переписки",
+    "disputes": "Диспуты"
+  },
+  "pages": {
+    "home": {
+      "formulaHtml": "Баланс рассчитывается по формуле: <b>(pay_in + comission_in) - (pay_out + comission_out) - withdrawal</b><br><br>Где:<ul><li><b>pay_in</b> — сумма, поступившая на ваши платежные реквизиты, конвертированная в USDT по курсу, установленному для каждого заказа</li><li><b>comission_in</b> — комиссия, установленная для заказов pay_in</li><li><b>pay_out</b> — сумма, отправленная на платежные реквизиты продавцов, конвертированная в USDT по курсу, установленному для каждого заказа</li><li><b>comission_out</b> — комиссия, установленная для заказов pay_out</li><li><b>withdrawal</b> — общая сумма в USDT всех пополнений баланса платформы</li></ul>При расчете прибыли не учитываются комиссии, которые могут быть удержаны банком за совершенную транзакцию.",
+      "currentBalanceTitle": "Текущий баланс",
+      "todayProfitTitle": "Прибыль за сегодня",
+      "monthProfitTitle": "Прибыль за 30 дней",
+      "chartTitle": "Статистика прибыли за 30 дней"
+    },
+    "cards": {
+      "title": "Карты и кошельки",
+      "addNewCard": "+ ДОБАВИТЬ НОВУЮ КАРТУ",
+      "statTotalCards": "Всего карт",
+      "statActiveCards": "Активных карт",
+      "noInfo": "Нет информации",
+      "modalTitle": "Реквизиты для оплаты",
+      "save": "СОХРАНИТЬ",
+      "cancel": "ОТМЕНА"
+    },
+    "cardsSimple": {
+      "title": "Карты и кошельки",
+      "calcDate": "Дата расчета",
+      "datePlaceholder": "dd.mm.yyyy"
+    },
+    "balance": {
+      "instructionHtml": "<li>Переведите USDT на указанный кошелек через сеть TRC 20</li><li>Нажмите кнопку \"Создать запрос на пополнение\" ниже</li><li>Укажите сумму депозита в USDT</li><li>Дождитесь подтверждения от администратора</li><li>После подтверждения сумма будет зачислена на ваш баланс</li>"
+    },
+    "sales": {
+      "tableDate": "Дата для таблицы",
+      "inProgress": "В ходе выполнения"
+    },
+    "purchases": {
+      "tableDate": "Дата для таблицы"
+    },
+    "disputes": {
+      "calcDate": "Дата расчета"
+    },
+    "placeholders": {
+      "settingsTitle": "Настройки трейдера",
+      "analyticsTitle": "Аналитика",
+      "salesTitle": "Продажи",
+      "purchasesTitle": "Купля",
+      "balanceTitle": "Баланс",
+      "messagesTitle": "Архив деловой переписки",
+      "disputesTitle": "Диспуты",
+      "emptyText": "Пустая страница. Весь текст меняется в site/data/content.json."
+    }
+  }
+}
