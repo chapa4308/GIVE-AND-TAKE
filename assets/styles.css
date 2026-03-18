@@ -481,4 +481,32 @@ a{color:inherit;text-decoration:none}
     content:none !important;
     display:none !important;
   }
+
+  /* GLOBAL FINAL TABLE OVERRIDE (чтобы никогда не пропадал текст и не появлялся "vertical/flex" режим) */
+  .table, .table[data-responsive-table="true"]{
+    display:block !important;
+    width:100% !important;
+    overflow-x:auto !important;
+    overflow-y:hidden !important;
+    table-layout:auto !important;
+  }
+  .table thead, .table[data-responsive-table="true"] thead{
+    display:table-header-group !important;
+  }
+  .table tbody, .table[data-responsive-table="true"] tbody{
+    display:table-row-group !important;
+  }
+  .table tr, .table[data-responsive-table="true"] tr{
+    display:table-row !important;
+  }
+  .table th, .table td, .table[data-responsive-table="true"] th, .table[data-responsive-table="true"] td{
+    display:table-cell !important;
+    white-space:nowrap !important;
+    overflow-wrap:normal !important;
+    word-break:normal !important;
+  }
+  .table td::before{
+    content:none !important;
+    display:none !important;
+  }
 }
