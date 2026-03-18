@@ -48,6 +48,42 @@ export async function applyContent() {
     if (val == null) return;
     el.innerHTML = String(val);
   });
+
+  // Мобильная адаптация таблиц: преобразуем в "карточный" вид
+  wireResponsiveTables();
+}
+
+function normalizeSpace(s) {
+  return String(s ?? '').replace(/\s+/g, ' ').trim();
+}
+
+function applyResponsiveTableLabels(table) {
+  const theadThs = Array.from(table.querySelectorAll('thead th'));
+  const headers = theadThs.map((th) => normalizeSpace(th.textContent));
+
+  const rows = Array.from(table.querySelectorAll('tbody tr'));
+  rows.forEach((tr) => {
+    const cells = Array.from(tr.querySelectorAll('td'));
+    let col = 0;
+    cells.forEach((td) => {
+      const span = Number(td.getAttribute('colspan') || td.colSpan || 1) || 1;
+      // Если колонок несколько (colspan), не показываем label, чтобы "No data" не превращался в набор лейблов
+      td.dataset.label = span > 1 ? '' : headers[col] || '';
+      col += span;
+    });
+  });
+
+  table.setAttribute('data-responsive-table', 'true');
+}
+
+export function wireResponsiveTables() {
+  const mql = window.matchMedia('(max-width: 640px)');
+  if (!mql.matches) return;
+
+  document.querySelectorAll('table.table').forEach((t) => {
+    // Если таблица уже помечена, все равно обновим labels (на случай рендера динамических строк)
+    applyResponsiveTableLabels(t);
+  });
 }
 
 export function setSession(session) {
@@ -223,6 +259,8 @@ export function renderCards() {
       renderCards();
     });
   });
+
+  wireResponsiveTables();
 }
 
 export function getTopups() {
@@ -257,6 +295,8 @@ export function renderTopups() {
       </tr>`
     )
     .join('');
+
+  wireResponsiveTables();
 }
 
 export function getUserBalance(email) {

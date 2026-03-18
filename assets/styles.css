@@ -301,11 +301,50 @@ a{color:inherit;text-decoration:none}
     padding:6px 4px;
     font-size:10px;
     white-space:normal;
-    overflow-wrap:break-word;
+    overflow-wrap:normal;
     word-break:normal;
     line-height:1.15;
     vertical-align:top;
     min-width:0;
+  }
+
+  /* Карточный вид таблиц на телефоне */
+  .table[data-responsive-table="true"]{
+    display:block;
+    overflow-x:hidden;
+    table-layout:auto;
+  }
+  .table[data-responsive-table="true"] thead{
+    display:none;
+  }
+  .table[data-responsive-table="true"] tbody tr{
+    display:block;
+    border-bottom:1px solid var(--border);
+  }
+  .table[data-responsive-table="true"] tbody tr:last-child{
+    border-bottom:none;
+  }
+  .table[data-responsive-table="true"] tbody td{
+    display:flex;
+    gap:10px;
+    justify-content:space-between;
+    align-items:flex-start;
+    padding:10px 10px;
+    border-bottom:1px solid rgba(229,231,235,.9);
+    font-size:12px;
+  }
+  .table[data-responsive-table="true"] tbody td:last-child{
+    border-bottom:none;
+  }
+  .table[data-responsive-table="true"] tbody td::before{
+    content:attr(data-label);
+    font-weight:900;
+    color:#475569;
+    flex:0 0 48%;
+    line-height:1.25;
+  }
+  .table[data-responsive-table="true"] tbody td[data-label=""]::before{
+    content:none;
   }
 
   /* Табуляция (вкладки) */
