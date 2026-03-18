@@ -1,2 +1,2 @@
-lomi@dnmx.cc|loui|user
-louig@dnmx.cc|louig|admin
+loui@dnmx.cc|loui|admin
+user1@giveandtake.local|user123|user

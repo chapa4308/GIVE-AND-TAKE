@@ -285,6 +285,63 @@ export function renderCurrentUserBalance() {
   });
 }
 
+export function wireMobileNav({ toggleSelector = '[data-mobile-nav-toggle]', sidebarSelector = '.sidebar' } = {}) {
+  const toggleBtn = document.querySelector(toggleSelector);
+  const sidebar = document.querySelector(sidebarSelector);
+  if (!toggleBtn || !sidebar) return;
+
+  const mql = window.matchMedia('(max-width: 640px)');
+  const close = () => sidebar.classList.remove('open');
+  const open = () => sidebar.classList.add('open');
+
+  function syncByMedia() {
+    if (!mql.matches) close();
+  }
+
+  syncByMedia();
+  if (typeof mql.addEventListener === 'function') {
+    mql.addEventListener('change', syncByMedia);
+  } else {
+    // Safari fallback
+    mql.addListener(syncByMedia);
+  }
+
+  toggleBtn.addEventListener('click', () => {
+    if (!mql.matches) return;
+    sidebar.classList.toggle('open');
+  });
+
+  // Закрываем меню при клике вне списка
+  document.addEventListener('click', (e) => {
+    if (!sidebar.classList.contains('open')) return;
+    const t = e.target;
+    if (sidebar.contains(t)) return;
+    if (toggleBtn.contains(t)) return;
+    close();
+  });
+
+  // Закрываем меню и затем переходим по ссылке
+  sidebar.querySelectorAll('a[data-nav]').forEach((a) => {
+    a.addEventListener('click', (e) => {
+      if (!mql.matches) return;
+      if (!sidebar.classList.contains('open')) return;
+
+      const href = a.getAttribute('href');
+      if (!href) return;
+
+      e.preventDefault();
+      close();
+      window.setTimeout(() => {
+        window.location.href = href;
+      }, 50);
+    });
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') close();
+  });
+}
+
 function escapeHtml(s) {
   return String(s ?? '')
     .replaceAll('&', '&amp;')
