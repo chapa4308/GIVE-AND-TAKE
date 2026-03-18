@@ -27,13 +27,14 @@
         <header class="topbar">
           <div class="muted"><span data-t="topbar.balanceLabel">Баланс</span>: <b style="color:#1e63ff" data-balance-usdt>0.00 USDT</b></div>
           <div class="right">
+            <button class="mobile-nav-toggle" type="button" data-mobile-nav-toggle aria-label="Навигация">≡</button>
             <div class="muted" data-user></div>
             <button class="logout" data-logout data-t="topbar.logout">Logout</button>
           </div>
         </header>
 
         <section class="page">
-          <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;max-width:980px">
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;max-width:980px">
             <div class="card" style="padding:16px">
               <div class="muted" style="font-weight:900;font-size:12px">Текущий баланс</div>
               <div style="font-weight:1000;font-size:22px;margin-top:10px;color:var(--primary)" data-balance-usdt>0.00 USDT</div>
@@ -51,7 +52,7 @@
             </div>
           </div>
 
-          <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;max-width:1040px;margin-top:14px">
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:14px;max-width:1040px;margin-top:14px">
             <div class="card" style="padding:16px">
               <div style="font-weight:1000;margin-bottom:10px">Кошелек для пополнения (USDT)</div>
               <div style="display:flex;gap:10px;align-items:center">
@@ -115,12 +116,13 @@
     </div>
 
     <script type="module">
-      import { addTopup, applyContent, closeModal, openModal, renderTopups, requireAuth, setUserBadge, setActiveNav, wireLogout, wireModalClose, renderCurrentUserBalance } from './assets/app.js';
+      import { addTopup, applyContent, closeModal, openModal, renderTopups, requireAuth, setUserBadge, setActiveNav, wireLogout, wireMobileNav, wireModalClose, renderCurrentUserBalance } from './assets/app.js';
       await applyContent();
       requireAuth();
       setUserBadge();
       setActiveNav();
       wireLogout();
+      wireMobileNav();
       wireModalClose('topupModal');
 
       renderTopups();

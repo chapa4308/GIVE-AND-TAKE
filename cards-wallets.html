@@ -27,6 +27,7 @@
         <header class="topbar">
           <div class="muted"><span data-t="topbar.balanceLabel">Баланс</span>: <b style="color:#1e63ff">0.00 USDT</b></div>
           <div class="right">
+            <button class="mobile-nav-toggle" type="button" data-mobile-nav-toggle aria-label="Навигация">≡</button>
             <div class="muted" data-user></div>
             <button class="logout" data-logout data-t="topbar.logout">Logout</button>
           </div>
@@ -122,6 +123,7 @@
         setActiveNav,
         setUserBadge,
         wireLogout,
+        wireMobileNav,
         wireModalClose
       } from './assets/app.js';
 
@@ -130,6 +132,7 @@
       setUserBadge();
       setActiveNav();
       wireLogout();
+      wireMobileNav();
       wireModalClose('addCardModal');
 
       renderCards();

@@ -47,6 +47,7 @@
         <header class="topbar">
           <div class="muted"><span data-t="topbar.balanceLabel">Баланс</span>: <b style="color:#1e63ff">0.00 USDT</b></div>
           <div class="right">
+            <button class="mobile-nav-toggle" type="button" data-mobile-nav-toggle aria-label="Навигация">≡</button>
             <div class="muted" data-user></div>
             <button class="logout" data-logout data-t="topbar.logout">Logout</button>
           </div>
@@ -134,12 +135,13 @@
     </div>
 
     <script type="module">
-      import { applyContent, requireAuth, setUserBadge, setActiveNav, wireLogout, onClick, openModal, wireModalClose } from './assets/app.js';
+      import { applyContent, requireAuth, setUserBadge, setActiveNav, wireLogout, onClick, openModal, wireModalClose, wireMobileNav } from './assets/app.js';
       await applyContent();
       requireAuth();
       setUserBadge();
       setActiveNav();
       wireLogout();
+      wireMobileNav();
       wireModalClose('addCardModal');
       onClick('#addCardBtn', () => openModal('addCardModal'));
     </script>
