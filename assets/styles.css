@@ -294,15 +294,16 @@ a{color:inherit;text-decoration:none}
     width:100%;
     overflow-x:hidden;
     border-radius:12px;
-    table-layout:auto;
+    table-layout:fixed;
   }
   .table th,.table td{
-    padding:8px 6px;
+    padding:6px 4px;
     font-size:10px;
     white-space:normal;
-    overflow-wrap:normal;
+    overflow-wrap:break-word;
     word-break:normal;
-    line-height:1.2;
+    line-height:1.15;
+    vertical-align:top;
   }
 
   /* Табуляция (вкладки) */
