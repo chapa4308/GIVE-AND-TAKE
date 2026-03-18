@@ -198,30 +198,27 @@ a{color:inherit;text-decoration:none}
     line-height:1;
   }
 
-  /* mobile nav overlay (свайп/скролл не нужен, меню раскрывается сверху) */
+  /* mobile nav (без fixed-оверлея, чтобы не “съедать” часть экрана) */
   .sidebar{
-    position:fixed;
-    left:0;
-    right:0;
-    top:58px; /* под topbar, чтобы не перекрывать кнопку */
-    z-index:110;
-    transform:translateY(-10px);
-    opacity:0;
-    pointer-events:none;
-    transition:transform .18s ease, opacity .18s ease;
+    position:relative;
+    z-index:auto;
+    left:auto;
+    right:auto;
+    top:auto;
+    display:block;
     background:#fff;
     border-right:none;
     border-bottom:1px solid var(--border);
-    padding:12px 10px;
-    max-height:calc(100vh - 58px);
-    overflow:auto;
+    padding:0 10px;
+    max-height:0;
+    overflow:hidden;
     overflow-x:hidden;
-    width:100vw;
+    width:100%;
+    transition:max-height .2s ease, padding .2s ease;
   }
   .sidebar.open{
-    transform:translateY(0);
-    opacity:1;
-    pointer-events:auto;
+    max-height:720px;
+    padding:12px 10px;
   }
 
   .brand{font-size:18px;margin:4px 6px 10px}
