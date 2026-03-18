@@ -292,18 +292,20 @@ a{color:inherit;text-decoration:none}
   .table{
     display:table;
     width:100%;
+    max-width:100vw;
     overflow-x:hidden;
     border-radius:12px;
-    table-layout:auto;
+    table-layout:fixed;
   }
   .table th,.table td{
     padding:6px 4px;
     font-size:10px;
     white-space:normal;
-    overflow-wrap:normal;
+    overflow-wrap:break-word;
     word-break:normal;
     line-height:1.15;
     vertical-align:top;
+    min-width:0;
   }
 
   /* Табуляция (вкладки) */
