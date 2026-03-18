@@ -333,6 +333,19 @@ a{color:inherit;text-decoration:none}
     border-bottom:1px solid rgba(229,231,235,.9);
     font-size:12px;
   }
+  /* Если одна ячейка закрывает всю строку (No data / No message),
+     возвращаем обычный блочный рендер и убираем label-псевдоэлемент */
+  .table[data-responsive-table="true"] tbody td[colspan]{
+    display:block !important;
+    gap:0 !important;
+    justify-content:initial !important;
+    align-items:initial !important;
+    padding:22px 10px !important;
+    text-align:center;
+  }
+  .table[data-responsive-table="true"] tbody td[colspan]::before{
+    content:none !important;
+  }
   .table[data-responsive-table="true"] tbody td:last-child{
     border-bottom:none;
   }
