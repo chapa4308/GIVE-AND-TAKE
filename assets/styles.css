@@ -300,4 +300,16 @@ a{color:inherit;text-decoration:none}
     white-space:normal;
     word-break:break-word;
   }
+
+  /* Табуляция (вкладки) */
+  .tabs{gap:8px}
+  .tab{
+    font-size:11px;
+    padding:8px 10px;
+    line-height:1.2;
+    white-space:normal;
+    overflow-wrap:anywhere;
+    word-break:break-word;
+    text-align:center;
+  }
 }
