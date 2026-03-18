@@ -62,13 +62,34 @@ function applyResponsiveTableLabels(table) {
   const headers = theadThs.map((th) => normalizeSpace(th.textContent));
 
   const rows = Array.from(table.querySelectorAll('tbody tr'));
+
+  // Если таблица пустая (только placeholder строки вида "No data/No message" в td[colspan]),
+  // не включаем responsive-режим, чтобы текст не пропадал.
+  const isPlaceholderRow = (tr) => {
+    const tds = Array.from(tr.querySelectorAll('td'));
+    if (tds.length !== 1) return false;
+    const td = tds[0];
+    const span = Number(td.getAttribute('colspan') || td.colSpan || 1) || 1;
+    if (span <= 1) return false;
+    const text = normalizeSpace(td.textContent).toLowerCase();
+    return text.startsWith('no data') || text.startsWith('no message') || td.classList.contains('muted');
+  };
+
+  const hasRealRows = rows.some((tr) => !isPlaceholderRow(tr));
+  if (!hasRealRows) return;
+
   rows.forEach((tr) => {
     const cells = Array.from(tr.querySelectorAll('td'));
     let col = 0;
     cells.forEach((td) => {
       const span = Number(td.getAttribute('colspan') || td.colSpan || 1) || 1;
-      // Если колонок несколько (colspan), не показываем label, чтобы "No data" не превращался в набор лейблов
-      td.dataset.label = span > 1 ? '' : headers[col] || '';
+      // Если колонок несколько (colspan), не показываем label и убираем атрибут,
+      // чтобы псевдоэлемент не влиял на видимость "No data/No message".
+      if (span > 1) {
+        td.removeAttribute('data-label');
+      } else {
+        td.dataset.label = headers[col] || '';
+      }
       col += span;
     });
   });
