@@ -290,22 +290,21 @@ a{color:inherit;text-decoration:none}
   .stats{gap:12px}
 
   .table{
-    display:table;
+    display:block;
     width:100%;
     max-width:100vw;
-    overflow-x:hidden;
+    overflow-x:auto;
     border-radius:12px;
     table-layout:auto;
   }
   .table th,.table td{
-    padding:6px 4px;
-    font-size:10px;
-    white-space:normal;
+    padding:10px 10px;
+    font-size:11px;
+    white-space:nowrap;
     overflow-wrap:normal;
     word-break:normal;
-    line-height:1.15;
+    line-height:1.2;
     vertical-align:top;
-    min-width:0;
   }
 
   /* Карточный вид таблиц на телефоне */

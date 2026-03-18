@@ -49,8 +49,12 @@ export async function applyContent() {
     el.innerHTML = String(val);
   });
 
-  // Мобильная адаптация таблиц: преобразуем в "карточный" вид
-  wireResponsiveTables();
+  // responsive-преобразование таблиц отключено: оно ломает пустые состояния
+  document.querySelectorAll('table.table[data-responsive-table="true"]').forEach((t) => {
+    t.removeAttribute('data-responsive-table');
+    // Сбрасываем labels, чтобы старые псевдоэлементы не влияли на отрисовку
+    t.querySelectorAll('td[data-label]').forEach((td) => td.removeAttribute('data-label'));
+  });
 }
 
 function normalizeSpace(s) {
@@ -62,6 +66,26 @@ function applyResponsiveTableLabels(table) {
   const headers = theadThs.map((th) => normalizeSpace(th.textContent));
 
   const rows = Array.from(table.querySelectorAll('tbody tr'));
+
+  // Если таблица пуста (только placeholder строка с colspan и текстом "No data/No message/Нет информации"),
+  // не включаем responsive-режим, чтобы текст не "пропадал".
+  const isPlaceholderRow = (tr) => {
+    const tds = Array.from(tr.querySelectorAll('td'));
+    if (tds.length !== 1) return false;
+    const td = tds[0];
+    const span = Number(td.getAttribute('colspan') || td.colSpan || 1) || 1;
+    if (span <= 1) return false;
+    const text = normalizeSpace(td.textContent).toLowerCase();
+    return (
+      text.startsWith('no data') ||
+      text.startsWith('no message') ||
+      text.startsWith('нет информации') ||
+      text.startsWith('no info')
+    );
+  };
+
+  const onlyPlaceholders = rows.length > 0 && rows.every((tr) => isPlaceholderRow(tr));
+  if (onlyPlaceholders) return;
 
   rows.forEach((tr) => {
     const cells = Array.from(tr.querySelectorAll('td'));
@@ -85,13 +109,7 @@ function applyResponsiveTableLabels(table) {
 }
 
 export function wireResponsiveTables() {
-  const mql = window.matchMedia('(max-width: 640px)');
-  if (!mql.matches) return;
-
-  document.querySelectorAll('table.table').forEach((t) => {
-    // Если таблица уже помечена, все равно обновим labels (на случай рендера динамических строк)
-    applyResponsiveTableLabels(t);
-  });
+  // intentionally no-op (legacy)
 }
 
 export function setSession(session) {
