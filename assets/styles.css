@@ -295,7 +295,7 @@ a{color:inherit;text-decoration:none}
     max-width:100vw;
     overflow-x:hidden;
     border-radius:12px;
-    table-layout:fixed;
+    table-layout:auto;
   }
   .table th,.table td{
     padding:6px 4px;
@@ -332,6 +332,10 @@ a{color:inherit;text-decoration:none}
     padding:10px 10px;
     border-bottom:1px solid rgba(229,231,235,.9);
     font-size:12px;
+    white-space:normal;
+    overflow-wrap:normal;
+    word-break:normal;
+    hyphens:none;
   }
   /* Если одна ячейка закрывает всю строку (No data / No message),
      возвращаем обычный блочный рендер и убираем label-псевдоэлемент */
@@ -342,8 +346,15 @@ a{color:inherit;text-decoration:none}
     align-items:initial !important;
     padding:22px 10px !important;
     text-align:center;
+    flex:unset !important;
+    width:100% !important;
+    color:var(--text) !important;
+    overflow:visible !important;
+    line-height:1.4 !important;
+    font-size:13px !important;
   }
   .table[data-responsive-table="true"] tbody td[colspan]::before{
+    display:none !important;
     content:none !important;
   }
   .table[data-responsive-table="true"] tbody td:last-child{
@@ -355,19 +366,17 @@ a{color:inherit;text-decoration:none}
     color:#475569;
     flex:0 0 48%;
     line-height:1.25;
+    white-space:normal;
+    overflow-wrap:normal;
+    word-break:normal;
+    hyphens:none;
   }
   .table[data-responsive-table="true"] tbody td[data-label=""]::before{
     content:none;
   }
 
   /* Точно убираем псевдоэлемент для colspan (иначе может влиять на видимость контента) */
-  .table[data-responsive-table="true"] tbody td[colspan]::before{
-    display:none !important;
-    content:none !important;
-  }
-  .table[data-responsive-table="true"] tbody td[colspan]{
-    color:var(--text) !important;
-  }
+  /* (дубликаты ниже не нужны, но пусть остаются безопасными) */
 
   /* Табуляция (вкладки) */
   .tabs{
