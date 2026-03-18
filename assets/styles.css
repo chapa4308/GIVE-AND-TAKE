@@ -302,7 +302,12 @@ a{color:inherit;text-decoration:none}
   }
 
   /* Табуляция (вкладки) */
-  .tabs{gap:8px}
+  .tabs{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+    width:100%;
+  }
   .tab{
     font-size:11px;
     padding:8px 10px;
@@ -311,5 +316,7 @@ a{color:inherit;text-decoration:none}
     overflow-wrap:anywhere;
     word-break:break-word;
     text-align:center;
+    width:100%;
+    box-sizing:border-box;
   }
 }
