@@ -183,7 +183,7 @@ a{color:inherit;text-decoration:none}
 }
 
 @media (max-width: 640px){
-  html,body{font-size:13px;overflow-x:hidden}
+  html,body{font-size:13px;overflow-x:visible}
   .layout{width:100%}
   .content{width:100%}
   .mobile-nav-toggle{
@@ -293,7 +293,7 @@ a{color:inherit;text-decoration:none}
     display:table;
     width:100%;
     max-width:100%;
-    overflow-x:hidden;
+    overflow-x:auto;
     border-radius:12px;
     table-layout:auto;
   }
