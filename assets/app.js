@@ -298,6 +298,8 @@ export function wireMobileNav({ toggleSelector = '[data-mobile-nav-toggle]', sid
     if (!mql.matches) close();
   }
 
+  // Всегда начинаем с закрытого состояния на мобилках.
+  close();
   syncByMedia();
   if (typeof mql.addEventListener === 'function') {
     mql.addEventListener('change', syncByMedia);

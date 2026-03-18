@@ -198,28 +198,34 @@ a{color:inherit;text-decoration:none}
     line-height:1;
   }
 
-  /* mobile nav (без fixed-оверлея, чтобы не “съедать” часть экрана) */
+  /* topbar всегда сверху */
+  .topbar{
+    position:fixed;
+    top:env(safe-area-inset-top);
+    left:0;
+    right:0;
+    z-index:150;
+  }
+  .content{padding-top:calc(64px + env(safe-area-inset-top))}
+
+  /* mobile nav (без fixed-оверлея, но чтобы не сдвигал верстку) */
   .sidebar{
+    display:none;
     position:relative;
     z-index:auto;
     left:auto;
     right:auto;
     top:auto;
-    display:block;
     background:#fff;
     border-right:none;
     border-bottom:1px solid var(--border);
-    padding:0 10px;
-    max-height:0;
-    overflow:hidden;
+    padding:12px 10px;
+    max-height:none;
+    overflow:visible;
     overflow-x:hidden;
     width:100%;
-    transition:max-height .2s ease, padding .2s ease;
   }
-  .sidebar.open{
-    max-height:720px;
-    padding:12px 10px;
-  }
+  .sidebar.open{display:block}
 
   .brand{font-size:18px;margin:4px 6px 10px}
   .nav{
@@ -253,12 +259,8 @@ a{color:inherit;text-decoration:none}
   /* убираем описание бренда в меню */
   .sidebar .muted[data-t]{display:none}
 
-  .topbar{
-    position:sticky;
-    top:0;
-    z-index:100;
-    flex-wrap:wrap;
-  }
+  /* flex-wrap нужен для коротких экранов */
+  .topbar{flex-wrap:wrap; border-bottom:1px solid var(--border)}
   .page{padding:12px}
   .topbar{padding:10px 12px}
   .topbar .muted{

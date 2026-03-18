@@ -25,7 +25,7 @@
 
       <main class="content">
         <header class="topbar">
-          <div class="muted">Баланс: <b style="color:#1e63ff">0.00 USDT</b></div>
+          <div class="muted">Баланс: <b style="color:#1e63ff" data-balance-usdt>0.00 USDT</b></div>
           <div class="right">
             <button class="mobile-nav-toggle" type="button" data-mobile-nav-toggle aria-label="Навигация">≡</button>
             <div class="muted" data-user></div>
@@ -44,11 +44,12 @@
     </div>
 
     <script type="module">
-      import { applyContent, requireAuth, setUserBadge, setActiveNav, wireMobileNav, wireLogout } from './assets/app.js';
+      import { applyContent, requireAuth, renderCurrentUserBalance, setUserBadge, setActiveNav, wireMobileNav, wireLogout } from './assets/app.js';
       await applyContent();
       requireAuth();
       setUserBadge();
       setActiveNav();
+      renderCurrentUserBalance();
       wireLogout();
       wireMobileNav();
     </script>
