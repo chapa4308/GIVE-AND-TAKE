@@ -309,15 +309,15 @@ a{color:inherit;text-decoration:none}
 
   /* Точечная настройка для "Купля" (много колонок -> фиксируем раскладку таблицы) */
   body[data-page="purchases"] .table{
-    table-layout:fixed;
+    table-layout:auto;
   }
   body[data-page="purchases"] .table th,
   body[data-page="purchases"] .table td{
     padding:4px 3px;
     font-size:9px;
-    overflow-wrap:break-word;
-    word-break:normal;
-    line-height:1.1;
+    overflow-wrap:normal;
+    word-break:keep-all;
+    line-height:1.05;
   }
 
   /* Жёсткий override: если остался data-responsive-table="true",
@@ -450,5 +450,35 @@ a{color:inherit;text-decoration:none}
   .modal{
     max-height:calc(100vh - 90px);
     overflow:auto;
+  }
+
+  /* FINAL override: если где-то остался data-responsive-table="true",
+     возвращаем нормальную таблицу (чтобы td не становились flex и не рвало/делало вертикальным текст). */
+  .table[data-responsive-table="true"]{
+    display:table !important;
+    table-layout:auto !important;
+    overflow-x:hidden !important;
+  }
+  .table[data-responsive-table="true"] thead{
+    display:table-header-group !important;
+  }
+  .table[data-responsive-table="true"] tbody tr{
+    display:table-row !important;
+  }
+  .table[data-responsive-table="true"] tbody td{
+    display:table-cell !important;
+    gap:0 !important;
+    flex:initial !important;
+    justify-content:initial !important;
+    align-items:initial !important;
+    padding:6px 6px !important;
+    overflow-wrap:normal !important;
+    word-break:normal !important;
+    white-space:normal !important;
+    hyphens:none !important;
+  }
+  .table[data-responsive-table="true"] tbody td::before{
+    content:none !important;
+    display:none !important;
   }
 }
